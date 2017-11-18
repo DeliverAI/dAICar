@@ -10,14 +10,16 @@ from time import sleep
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.OUT)
 pwm = GPIO.PWM(18, 50)
-pwm.start(5)
+pwm.start(1)
 
 while(True):
     r = requests.get('https://hackwestern-8e5fa.firebaseio.com/package_unlock.json')
     if(r.json()):
-        pwm.ChangeDutyCycle(9)
-        # print(r.json())
+        pwm.ChangeDutyCycle(8)
+        print(r.json())
         # sleep(5)
+    else:
+        pwm.ChangeDutyCycle(1)
     sleep(1)
 
 
