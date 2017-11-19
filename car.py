@@ -41,6 +41,8 @@ def driveForward(time):
     GPIO.output(Motor2E, GPIO.LOW)
     GPIO.cleanup()
 
+    sleep(3)
+
 
 def turnLeft(time):
     GPIO.setmode(GPIO.BOARD)
@@ -97,10 +99,10 @@ while(True):
         left = instructions['left']
         forward = instructions['forward']
 
-        GPIO.setmode(GPIO.BOARD)
-
         turnLeft(left)
         driveForward(forward)
+
+        GPIO.cleanup()
 
         requests.patch('https://hackwestern-8e5fa.firebaseio.com/.json',
                        data=json.dumps({"package_arrived": True}))
