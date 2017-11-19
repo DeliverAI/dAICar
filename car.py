@@ -4,10 +4,11 @@ from box import openBox
 import json
 import requests
 
-GPIO.setmode(GPIO.BOARD)
+# GPIO.setmode(GPIO.BOARD)
 
 
 def driveForward(time):
+    GPIO.setmode(GPIO.BOARD)
 
     Motor1A = 16
     Motor1B = 18
@@ -42,6 +43,7 @@ def driveForward(time):
 
 
 def turnLeft(time):
+    GPIO.setmode(GPIO.BOARD)
 
     Motor1A = 16
     Motor1B = 18
