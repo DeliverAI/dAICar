@@ -36,7 +36,7 @@ def driveForward(time):
 
     sleep(time)
 
-    PIO.output(Motor1E, GPIO.LOW)
+    GPIO.output(Motor1E, GPIO.LOW)
     GPIO.output(Motor2E, GPIO.LOW)
     GPIO.cleanup()
 
