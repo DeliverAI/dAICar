@@ -20,6 +20,5 @@ def openBox():
         else:
             # print("Hello!")
             pwm.ChangeDutyCycle(1)
-            pwm.stop()
             flag = False
         sleep(1)
