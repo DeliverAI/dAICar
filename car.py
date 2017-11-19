@@ -27,13 +27,6 @@ import requests
 # GPIO.setup(Motor2E,GPIO.OUT)
 
 
-
-
-print(instructions)
-print(left)
-print(forward)
-
-
 while(True):
     r = requests.get('https://hackwestern-8e5fa.firebaseio.com/who_ordered/order_made.json')
     if(r.json()):
