@@ -102,8 +102,6 @@ while(True):
         turnLeft(left)
         driveForward(forward)
 
-        GPIO.cleanup()
-
         requests.patch('https://hackwestern-8e5fa.firebaseio.com/.json',
                        data=json.dumps({"package_arrived": True}))
 
