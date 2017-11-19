@@ -4,6 +4,8 @@ from box import openBox
 import json
 import requests
 
+GPIO.setmode(GPIO.BOARD)
+
 Motor1A = 16
 Motor1B = 18
 Motor1E = 22
