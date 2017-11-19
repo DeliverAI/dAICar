@@ -5,8 +5,8 @@ import json
 
 def openBox():
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(24, GPIO.OUT)
-    pwm = GPIO.PWM(24, 50)
+    GPIO.setup(12, GPIO.OUT)
+    pwm = GPIO.PWM(12, 50)
     pwm.start(1)
     flag = True
 
