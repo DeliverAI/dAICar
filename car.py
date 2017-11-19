@@ -1,8 +1,8 @@
+import RPi.GPIO as GPIO
 from time import sleep
 from box import openBox
 import json
 import requests
-import RPi.GPIO as GPIO
 
 
 GPIO.setmode(GPIO.BOARD)
@@ -24,6 +24,8 @@ GPIO.setup(Motor2B,GPIO.OUT)
 GPIO.setup(Motor2E,GPIO.OUT)
 
 def driveForward(time):
+    GPIO.setmode(GPIO.BOARD)
+
     print "Going forwards"
     GPIO.output(Motor1A,GPIO.HIGH)
     GPIO.output(Motor1B,GPIO.LOW)
@@ -39,6 +41,8 @@ def driveForward(time):
     GPIO.cleanup()
 
 def turnLeft(time):
+    GPIO.setmode(GPIO.BOARD)
+
     print "Turnning"
     GPIO.output(Motor1A,GPIO.LOW)
     GPIO.output(Motor1B,GPIO.HIGH)
