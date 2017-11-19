@@ -22,6 +22,8 @@ GPIO.setup(Motor2A, GPIO.OUT)
 GPIO.setup(Motor2B, GPIO.OUT)
 GPIO.setup(Motor2E, GPIO.OUT)
 
+GPIO.setup(18, GPIO.OUT)
+
 
 def driveForward(time):
 
