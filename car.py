@@ -1,54 +1,27 @@
 from time import sleep
-# from box import openBox
+from box import openBox
 import json
 import requests
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 
-# openBox()
+GPIO.setmode(GPIO.BOARD)
 
-#
-# GPIO.setmode(GPIO.BOARD)
-#
-# Motor1A = 16
-# Motor1B = 18
-# Motor1E = 22
-#
-# Motor2A = 19
-# Motor2B = 21
-# Motor2E = 23
-#
-# GPIO.setup(Motor1A,GPIO.OUT)
-# GPIO.setup(Motor1B,GPIO.OUT)
-# GPIO.setup(Motor1E,GPIO.OUT)
-#
-# GPIO.setup(Motor2A,GPIO.OUT)
-# GPIO.setup(Motor2B,GPIO.OUT)
-# GPIO.setup(Motor2E,GPIO.OUT)
+Motor1A = 16
+Motor1B = 18
+Motor1E = 22
 
+Motor2A = 19
+Motor2B = 21
+Motor2E = 23
 
-while(True):
-    r = requests.get('https://hackwestern-8e5fa.firebaseio.com/who_ordered/order_made.json')
-    if(r.json()):
-        address = requests.get('https://hackwestern-8e5fa.firebaseio.com/who_ordered/address.json')
+GPIO.setup(Motor1A,GPIO.OUT)
+GPIO.setup(Motor1B,GPIO.OUT)
+GPIO.setup(Motor1E,GPIO.OUT)
 
-        car_instructions = requests.get('https://hackwestern-8e5fa.firebaseio.com/car_instructions.json')
-        json_data = json.loads(car_instructions.text)
-        try:
-            instructions = json_data[address.text.encode('utf8').replace("\"","")]
-        except KeyError, e:
-            instructions = json_data['1 University Road']
-
-        left = instructions['left']
-        forward = instructions['forward']
-
-        turnLeft(left)
-        driveForward(forward)
-
-        requests.patch('https://hackwestern-8e5fa.firebaseio.com/.json', data = json.dumps({"package_arrived": True}))
-
-        openBox()
-
+GPIO.setup(Motor2A,GPIO.OUT)
+GPIO.setup(Motor2B,GPIO.OUT)
+GPIO.setup(Motor2E,GPIO.OUT)
 
 def driveForward(time):
     print "Going forwards"
@@ -79,6 +52,29 @@ def turnLeft(time):
     GPIO.output(Motor1E,GPIO.LOW)
     GPIO.output(Motor2E,GPIO.LOW)
     GPIO.cleanup()
+
+while(True):
+    r = requests.get('https://hackwestern-8e5fa.firebaseio.com/who_ordered/order_made.json')
+    if(r.json()):
+        address = requests.get('https://hackwestern-8e5fa.firebaseio.com/who_ordered/address.json')
+
+        car_instructions = requests.get('https://hackwestern-8e5fa.firebaseio.com/car_instructions.json')
+        json_data = json.loads(car_instructions.text)
+        try:
+            instructions = json_data[address.text.encode('utf8').replace("\"","")]
+        except KeyError, e:
+            instructions = json_data['1 University Road']
+
+        left = instructions['left']
+        forward = instructions['forward']
+
+        turnLeft(left)
+        driveForward(forward)
+
+        requests.patch('https://hackwestern-8e5fa.firebaseio.com/.json', data = json.dumps({"package_arrived": True}))
+
+        openBox()
+
 
 # print "Going backwards"
 # GPIO.output(Motor1A,GPIO.LOW)
