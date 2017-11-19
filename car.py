@@ -5,12 +5,8 @@ import json
 import requests
 
 
-# GPIO.setmode(GPIO.BOARD)
-
-
 def driveForward(time):
 
-    GPIO.setmode(GPIO.BOARD)
     Motor1A = 16
     Motor1B = 18
     Motor1E = 22
@@ -26,6 +22,7 @@ def driveForward(time):
     GPIO.setup(Motor2A, GPIO.OUT)
     GPIO.setup(Motor2B, GPIO.OUT)
     GPIO.setup(Motor2E, GPIO.OUT)
+    
     print "Going forwards"
     GPIO.output(Motor1A, GPIO.HIGH)
     GPIO.output(Motor1B, GPIO.LOW)
@@ -36,13 +33,10 @@ def driveForward(time):
     GPIO.output(Motor2E, GPIO.HIGH)
 
     sleep(time)
-    GPIO.output(Motor1E, GPIO.LOW)
-    GPIO.output(Motor2E, GPIO.LOW)
-    GPIO.cleanup()
 
 
 def turnLeft(time):
-    GPIO.setmode(GPIO.BOARD)
+
     Motor1A = 16
     Motor1B = 18
     Motor1E = 22
@@ -69,9 +63,7 @@ def turnLeft(time):
     GPIO.output(Motor2E, GPIO.HIGH)
 
     sleep(time)
-    GPIO.output(Motor1E, GPIO.LOW)
-    GPIO.output(Motor2E, GPIO.LOW)
-    GPIO.cleanup()
+
 
 
 while(True):
@@ -93,8 +85,14 @@ while(True):
         left = instructions['left']
         forward = instructions['forward']
 
+        GPIO.setmode(GPIO.BOARD)
+
         turnLeft(left)
         driveForward(forward)
+
+        GPIO.output(Motor1E, GPIO.LOW)
+        GPIO.output(Motor2E, GPIO.LOW)
+        GPIO.cleanup()
 
         requests.patch('https://hackwestern-8e5fa.firebaseio.com/.json',
                        data=json.dumps({"package_arrived": True}))
