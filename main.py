@@ -1,11 +1,8 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-from Tkinter import *
-import time
-
 import requests
-from time import sleep
+import json
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.OUT)
@@ -16,9 +13,11 @@ while(True):
     r = requests.get('https://hackwestern-8e5fa.firebaseio.com/package_unlock.json')
     if(r.json()):
         pwm.ChangeDutyCycle(8)
-        print(r.json())
-        # sleep(5)
+        sleep(10)
+        requests.patch('https://hackwestern-8e5fa.firebaseio.com/.json', data = json.dumps({"package_unlock": False}))
+        # print(r.json())
     else:
+        # print("Hello!")
         pwm.ChangeDutyCycle(1)
     sleep(1)
 
