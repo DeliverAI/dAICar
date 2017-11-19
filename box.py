@@ -4,7 +4,7 @@ import requests
 import json
 
 def openBox():
-    # GPIO.setmode(GPIO.BCM)
+    GPIO.setmode(GPIO.BOARD)
     # GPIO.setup(18, GPIO.OUT)
     pwm = GPIO.PWM(24, 50)
     pwm.start(1)
