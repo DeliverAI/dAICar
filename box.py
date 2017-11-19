@@ -16,10 +16,8 @@ def openBox():
             pwm.ChangeDutyCycle(8)
             sleep(10)
             requests.patch('https://hackwestern-8e5fa.firebaseio.com/.json', data = json.dumps({"package_unlock": False}))
+            pwm.ChangeDutyCycle(1)
             flag = False
             # print(r.json())
-        else:
-            # print("Hello!")
-            pwm.ChangeDutyCycle(1)
 
         sleep(1)
