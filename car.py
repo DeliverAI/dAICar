@@ -100,11 +100,11 @@ while(True):
         forward = instructions['forward']
 
         turnLeft(left)
-        sleep(0.25)
+        sleep(0.5)
         driveForward(forward)
-        sleep(0.25)
+        # sleep(0.25)
         driveForward(forward)
-        sleep(0.25)
+        # sleep(0.25)
         driveForward(forward)
 
         requests.patch('https://hackwestern-8e5fa.firebaseio.com/.json',
