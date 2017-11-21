@@ -41,8 +41,6 @@ def driveForward(time):
     GPIO.output(Motor2E, GPIO.LOW)
     GPIO.cleanup()
 
-    sleep(3)
-
 
 def turnLeft(time):
     GPIO.setmode(GPIO.BOARD)
