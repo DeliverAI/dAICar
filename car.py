@@ -99,9 +99,9 @@ while(True):
         left = instructions['left']
         forward = instructions['forward']
 
-        driveForward(forward)
+        # driveForward(forward)
         # sleep(0.25)
-        driveForward(forward)
+        # driveForward(forward)
         # sleep(0.25)
         driveForward(forward)
         sleep(0.5)
