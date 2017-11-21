@@ -99,13 +99,13 @@ while(True):
         left = instructions['left']
         forward = instructions['forward']
 
-        turnLeft(left)
+        driveForward(forward)
+        # sleep(0.25)
+        driveForward(forward)
+        # sleep(0.25)
+        driveForward(forward)
         sleep(0.5)
-        driveForward(forward)
-        # sleep(0.25)
-        driveForward(forward)
-        # sleep(0.25)
-        driveForward(forward)
+        turnLeft(left)
 
         requests.patch('https://hackwestern-8e5fa.firebaseio.com/.json',
                        data=json.dumps({"package_arrived": True}))
