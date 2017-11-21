@@ -99,8 +99,6 @@ while(True):
 
         driveForward(forward)
         sleep(1)
-        driveForward(forward)
-        sleep(1)
         turnLeft(left)
 
         requests.patch('https://hackwestern-8e5fa.firebaseio.com/.json',
